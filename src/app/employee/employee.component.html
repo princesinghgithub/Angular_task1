@@ -1,0 +1,28 @@
+<h1> Employee Data</h1>
+<!-- search  filture code start here -->
+<div class="search-hero">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Enter search by name">
+  </div>
+  <!-- search  filture code end here -->
+
+  <!-- table data start code here -->
+<table>
+    <thead>
+    <tr>
+      <th (click)="sort('id')">S No &nbsp;<i class="fa fa-sort"></i></th>
+      <th (click)="sort('name')">Name &nbsp;<i class="fa fa-sort"></i> </th>
+      <th (click)="sort('department')">Department &nbsp;<i class="fa fa-sort"></i></th>
+      <th  (click)="sort('joining_date')">Joining Date&nbsp;<i class="fa fa-sort"></i></th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let user of users | filter:searchText| paginate: { itemsPerPage: 7, currentPage: p }; ">
+      <td>{{user.id}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.department}}</td>
+      <td>{{user.joining_date}}</td>
+    </tr>
+</tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </table>
+    <!-- table data end code here -->
